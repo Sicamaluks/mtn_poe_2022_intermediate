@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View , TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View , TouchableOpacity,} from 'react-native';
 import { Login, Home, NoteDetail }  from './components/screens/index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,10 +8,13 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App({ navigation }) {
   var [gridView, setGridView] = useState("false");
+
+  
   return (
-    <NavigationContainer>
+  
+      <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
         <Stack.Screen name="Home" component={Home}  options={{title:"Noted!", gestureEnabled: false, 
@@ -47,10 +50,13 @@ export default function App() {
     );
   },
           }}/>
-        {/* <Stack.Screen name="Detail" component={Details} options={{title:"Note Detail"}}  />       */}
+        <Stack.Screen name="NoteDetail" component={NoteDetail} options={{title:"Note Detail", headerStyle: {
+            backgroundColor: "#6699CC"
+          },
+          headerTintColor: "#fff"
+          }}  />      
       </Stack.Navigator>
-    </NavigationContainer>
-    
+    </NavigationContainer> 
   );
 }
 

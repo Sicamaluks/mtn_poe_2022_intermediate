@@ -4,15 +4,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import { Appbar } from "react-native-paper";
 import CustomCard from "../CustomCard";
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <SafeAreaView>
-      <CustomCard noteTitle="test" noteContent="test" />
+      <TouchableOpacity onPress={() => navigation.navigate("NoteDetail")}>
+        <CustomCard noteTitle="test" noteContent="test" />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

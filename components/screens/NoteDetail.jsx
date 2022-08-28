@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function NeteDetail() {
+export default function NoteDetail() {
   return (
     <View>
-      <Text>NeteDetail</Text>
+      <Text>NoteDetail</Text>
     </View>
   );
 }
