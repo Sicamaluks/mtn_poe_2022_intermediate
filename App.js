@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View , TouchableOpacity} from 'react-native';
-import Login  from './components/screens/Login';
+import { Login, Home, NoteDetail }  from './components/screens/index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './components/screens/Home';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Stack = createNativeStackNavigator();
