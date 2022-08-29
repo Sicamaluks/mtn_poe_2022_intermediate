@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View , TouchableOpacity,} from 'react-native';
-import { Login, Home, NoteDetail }  from './components/screens/index';
+import { Login, Home, NoteDetail, Registration }  from './components/screens/index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -10,14 +10,16 @@ const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
   var [gridView, setGridView] = useState("false");
-
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
   
   return (
   
       <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
-        <Stack.Screen name="Home" component={Home}  options={{title:"Noted!", gestureEnabled: false, 
+        { user ? (
+          <>
+           <Stack.Screen name="Home" component={Home}  options={{title:"Noted!", gestureEnabled: false, 
           headerStyle: {
             backgroundColor: "#6699CC"
           },
@@ -55,6 +57,12 @@ export default function App({ navigation }) {
           },
           headerTintColor: "#fff"
           }}  />      
+    
+        </>)
+        : (
+        <><Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+        <Stack.Screen name="Registration" component={Registration} /></>
+        )}
       </Stack.Navigator>
     </NavigationContainer> 
   );

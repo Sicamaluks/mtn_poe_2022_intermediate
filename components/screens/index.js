@@ -1,10 +1,12 @@
 import Login from './Login';
 import Home from './Home';
 import NoteDetail from './NoteDetail';
+import Registration from './Registration';
 
 
-export {
+export  {
     Login , 
     Home, 
-    NoteDetail
+    NoteDetail,
+    Registration
  }

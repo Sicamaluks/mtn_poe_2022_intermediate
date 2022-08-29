@@ -5,17 +5,21 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Pressable,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import { Appbar } from "react-native-paper";
 import CustomCard from "../CustomCard";
+import "firebase/firestore";
+import app from "../../config/firebase";
 
-export default function Home({ navigation }) {
+const db = app.firestore;
+
+export default function Home() {
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={() => navigation.navigate("NoteDetail")}>
+      <ScrollView>
         <CustomCard noteTitle="test" noteContent="test" />
-      </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 }

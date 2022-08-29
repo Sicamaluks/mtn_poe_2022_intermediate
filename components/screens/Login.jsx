@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -10,20 +9,20 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import React, { Component } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import styles from "./styles";
 
 export default function Login({ navigation }) {
-  const [username, onChangeUsername] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
-  var errorMsg = "";
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
-  const inputFieldsValidator = (field) => {
-    field.length > 3
-      ? (errorMsg = "")
-      : (errorMsg = "Please fill in all form field");
+  const onLoginPress = () => {
+    navigation.navigate("Home");
   };
+
+  const onFooterLinkPress = () => {
+    navigation.navigate("Registration");
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView style={styles.container} behavor="padding" enabled>
@@ -38,77 +37,44 @@ export default function Login({ navigation }) {
         </View>
         <View>
           <TextInput
-            style={styles.input}
-            onChangeText={onChangeUsername}
-            onBlur={inputFieldsValidator}
-            placeholder="Enter Username"
+            style={{ ...styles.input, width: 345 }}
+            placeholder="E-mail"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
           />
           <TextInput
             style={styles.input}
-            onChangeText={onChangePassword}
-            placeholder="Enter Password"
             secureTextEntry
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
           />
-          {errorMsg != "" ? null : (
-            <Text style={{ color: "red", marginLeft: 18 }}>{errorMsg}</Text>
-          )}
         </View>
 
         <TouchableOpacity
           style={styles.button}
-          disabled={username.length < 3 || password.length < 3 ? true : false}
+          disabled={email.length < 3 || password.length < 3 ? true : false}
           onPress={() => {
             navigation.navigate("Home");
             return true;
           }}
         >
-          <Text style={{ color: "white" }}>Login</Text>
+          <Text style={styles.buttonTitle}>Login</Text>
         </TouchableOpacity>
+        <View style={styles.footerView}>
+          <Text style={styles.footerText}>
+            Don't have an account?{" "}
+            <Text onPress={onFooterLinkPress} style={styles.footerLink}>
+              Sign up
+            </Text>
+          </Text>
+        </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    left: 30,
-    width: 200,
-    height: 200,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    width: 350,
-    borderRadius: 15,
-    borderWidth: 1,
-    padding: 10,
-    borderColor: "#6699CC",
-    fontSize: 18,
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#6699CC",
-    padding: 10,
-    margin: 30,
-    borderRadius: 10,
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
-  buttonDisabled: {
-    alignItems: "center",
-    backgroundColor: "#6699CC",
-    padding: 10,
-    margin: 30,
-    borderRadius: 10,
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
-});
