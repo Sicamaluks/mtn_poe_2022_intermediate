@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = React.useState("");
 
   const onLoginPress = () => {
-    navigation.navigate("Home");
+    navigation.navigate("Home", { user: "Sicamaluks2014@gmail.com" });
   };
 
   const onFooterLinkPress = () => {
@@ -60,8 +60,8 @@ export default function Login({ navigation }) {
           style={styles.button}
           disabled={email.length < 3 || password.length < 3 ? true : false}
           onPress={() => {
-            navigation.navigate("Home");
-            return true;
+            navigation.navigate("Home", { user: { email } });
+            return;
           }}
         >
           <Text style={styles.buttonTitle}>Login</Text>

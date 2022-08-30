@@ -14,7 +14,7 @@ import app from "../../config/firebase";
 
 const db = app.firestore;
 
-export default function Home() {
+export default function Home(props) {
   return (
     <SafeAreaView>
       <ScrollView>

@@ -13,13 +13,15 @@ export default function App({ navigation }) {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
   
-  return (
-  
+  return (  
       <NavigationContainer>
       <Stack.Navigator>
-        { user ? (
-          <>
-           <Stack.Screen name="Home" component={Home}  options={{title:"Noted!", gestureEnabled: false, 
+        <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+        <Stack.Screen name="Registration" component={Registration} options ={{headerStyle: {
+            backgroundColor: "#6699CC"
+          },headerTintColor: "#fff",    }}/>
+        <Stack.Screen name="Home" 
+          options={({navigation})=>({title:"Noted!", gestureEnabled: false,  
           headerStyle: {
             backgroundColor: "#6699CC"
           },
@@ -28,41 +30,36 @@ export default function App({ navigation }) {
           headerLeft: ()=> {
             return (
               <TouchableOpacity style={{ paddingRight: 8 }}>
-                <Icon name="menu" size={24} color="white" onPress={() => navigation.toggleDrawer()}/>
+                <Icon name="menu" size={24} color="white" onPress={() => {}}/>
               </TouchableOpacity>  
             )          
           },
           headerRight: () => {
-    return (
-        <>
-        <TouchableOpacity style={{ paddingRight: 8 }}> 
-         <Icon name={gridView ? "grid" : "grid-off"} size={24} color="white" onPress={() => {
-              setGridView(!gridView);
-            }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ paddingRight: 8 }}>
-          <Icon name="plus" size={24} color="white"
-            onPress={() => {
-              
-            }}
-          />
-        </TouchableOpacity>
-        </>
-    );
-  },
-          }}/>
+            return (
+              <>
+                <TouchableOpacity style={{ paddingRight: 8 }}> 
+                <Icon name={gridView ? "grid" : "grid-off"} size={24} color="white" onPress={() => {
+                      setGridView(!gridView);
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ paddingRight: 8 }}>
+                  <Icon name="logout" size={40} color="orange"
+                    onPress={() => {
+                      navigation.navigate("Login");
+                    }}
+                  />
+                </TouchableOpacity>
+              </>
+            ); }, })}>
+            {props => <Home {...props} extraData={user} />}
+          </Stack.Screen>
         <Stack.Screen name="NoteDetail" component={NoteDetail} options={{title:"Note Detail", headerStyle: {
             backgroundColor: "#6699CC"
           },
           headerTintColor: "#fff"
-          }}  />      
-    
-        </>)
-        : (
-        <><Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
-        <Stack.Screen name="Registration" component={Registration} /></>
-        )}
+          }}  /> 
+        
       </Stack.Navigator>
     </NavigationContainer> 
   );

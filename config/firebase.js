@@ -1,6 +1,5 @@
 import firebase from 'firebase/compat/app';
 
-
 const constants = {"projectId":"fir-flutter-162b4", "appId":"1:724786210784:android:1d6d5c2cdb8ad953c3ed85" }
 
 const app = !firebase.apps.length ? firebase.initializeApp({
@@ -15,4 +14,4 @@ const app = !firebase.apps.length ? firebase.initializeApp({
 }): firebase.app();
 
 export default app;
-
+console.log(firebase.apps.length);
