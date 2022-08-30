@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { StyleSheet, Text, View , TouchableOpacity,} from 'react-native';
 import { Login, Home, NoteDetail, Registration }  from './components/screens/index';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,6 +12,7 @@ export default function App({ navigation }) {
   var [gridView, setGridView] = useState("false");
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
+
   
   return (  
       <NavigationContainer>
