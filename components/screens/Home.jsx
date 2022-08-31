@@ -28,10 +28,21 @@ export default function Home(props) {
             size={200}
             color="#6699cc"
             onPress={async () => {
+              const permissionResult =
+                await ImagePicker.requestCameraPermissionsAsync();
+
+              if (permissionResult.granted === false) {
+                alert(
+                  "You've refused to allow this appp to access your camera!"
+                );
+                return;
+              }
+
               let cameraResults = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
-                saveToPhotos: true,
-              });
+                base64: true,
+                // saveToPhotos: true,
+              }).catch((error) => alert(error));
             }}
           />
           <Text>Take a picture</Text>
