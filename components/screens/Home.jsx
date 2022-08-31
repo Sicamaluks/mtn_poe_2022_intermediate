@@ -1,6 +1,7 @@
 import {
   View,
   Text,
+  Button,
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
@@ -11,17 +12,12 @@ import React, { useState } from "react";
 import CustomCard from "../CustomCard";
 import "firebase/firestore";
 import app from "../../config/firebase";
-
-const db = app.firestore;
+import * as ImagePicker from "expo-image-picker";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Notes from "../Notes";
 
 export default function Home(props) {
-  return (
-    <SafeAreaView>
-      <ScrollView>
-        <CustomCard noteTitle="test" noteContent="test" />
-      </ScrollView>
-    </SafeAreaView>
-  );
+  return <Notes />;
 }
 
 const styles = StyleSheet.create({

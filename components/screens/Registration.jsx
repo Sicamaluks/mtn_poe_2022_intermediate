@@ -32,7 +32,7 @@ export default function RegistrationScreen({ navigation }) {
           email,
           fullName,
         };
-        const usersRef = firebase.firestore().collection("users");
+        const usersRef = app.firestore().collection("users");
         usersRef
           .doc(uid)
           .set(data)

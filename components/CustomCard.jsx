@@ -9,7 +9,7 @@ export default function CustomCard({ navigation }) {
     <Card
       mode="outlined"
       style={{ margin: 16, padding: 16 }}
-      onPress={() => navigation.navigate("NoteDetail")}
+      onPress={() => alert("NoteDetail")}
     >
       <Card.Content>
         <Title>React Native</Title>
@@ -18,11 +18,19 @@ export default function CustomCard({ navigation }) {
       <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
       <View style={{ flex: 1, alignContent: "flex-end" }}>
         <Card.Actions>
-          <TouchableOpacity style={{ left: 240 }}>
+          <TouchableOpacity
+            style={{ left: 240 }}
+            onPress={() => alert("Edit Note")}
+          >
             <Icon size={32} color="#6699cc" name="edit" />
           </TouchableOpacity>
           <TouchableOpacity style={{ left: 245 }}>
-            <Icon size={34} color="red" name="trash-alt" />
+            <Icon
+              size={34}
+              color="red"
+              name="trash-alt"
+              onPress={() => alert("Delete Note")}
+            />
           </TouchableOpacity>
         </Card.Actions>
       </View>
