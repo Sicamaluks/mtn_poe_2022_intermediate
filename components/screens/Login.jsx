@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import React, { Component } from "react";
 import styles from "./styles";
+import app from "../../config/firebase";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = React.useState("");
@@ -83,10 +84,7 @@ export default function Login({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           disabled={email.length < 3 || password.length < 3 ? true : false}
-          onPress={() => {
-            navigation.navigate("Home", { user: { email } });
-            return;
-          }}
+          onPress={onLoginPress}
         >
           <Text style={styles.buttonTitle}>Login</Text>
         </TouchableOpacity>

@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import 'firebase/compat/firestore';  
+import 'firebase/compat/firestore';
 
 const constants = {"projectId":"fir-flutter-162b4", "appId":"1:724786210784:android:1d6d5c2cdb8ad953c3ed85" }
 

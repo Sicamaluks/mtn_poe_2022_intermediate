@@ -16,8 +16,31 @@ import * as ImagePicker from "expo-image-picker";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Notes from "../Notes";
 
+// const db = app.firestore;
+
 export default function Home(props) {
-  return <Notes />;
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        {/* <CustomCard noteTitle="test" noteContent="test" /> */}
+        <Notes />
+        <View style={{ alignItems: "center" }}>
+          <Icon
+            name="camera"
+            size={200}
+            color="#6699cc"
+            onPress={async () => {
+              let cameraResults = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                saveToPhotos: true,
+              });
+            }}
+          />
+          <Text>Take a picture</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

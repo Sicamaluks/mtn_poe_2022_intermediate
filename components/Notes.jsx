@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
+import { Avatar, Card, Title, Paragraph } from "react-native-paper";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { useNavigation } from "@react-navigation/native";
 import app from "../config/firebase";
-import Moment from "moment";
+// import Moment from "moment";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
 
   const notesRef = app.firestore().collection("notes");
-
+  const navigation = useNavigation();
   notesRef
     .get()
     .then((items) => {
@@ -30,16 +33,42 @@ export default function Notes() {
   return (
     <View style={{ flex: 1, marginTop: 10 }}>
       <FlatList
+        scrollEnabled={true}
         data={notes}
         numColumns={1}
         flexDirection={"column"}
         renderItem={({ item }) => (
-          <Pressable style={styles.container}>
-            <View style={styles.innerContainer}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.note}>{item.note}</Text>
-            </View>
-          </Pressable>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("NoteDetail");
+            }}
+          >
+            <Card mode="outlined" style={{ margin: 16, padding: 16 }}>
+              <Card.Content>
+                <Title>{item.title}</Title>
+                <Paragraph>{item.note}</Paragraph>
+              </Card.Content>
+              <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+              <View style={{ flex: 1, alignContent: "flex-end" }}>
+                <Card.Actions>
+                  <TouchableOpacity
+                    style={{ left: 240 }}
+                    onPress={() => alert("Edit Note")}
+                  >
+                    <Icon size={32} color="#6699cc" name="edit" />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ left: 245 }}>
+                    <Icon
+                      size={34}
+                      color="red"
+                      name="trash-alt"
+                      onPress={() => alert("Delete Note")}
+                    />
+                  </TouchableOpacity>
+                </Card.Actions>
+              </View>
+            </Card>
+          </TouchableOpacity>
         )}
       />
     </View>

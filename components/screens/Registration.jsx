@@ -4,7 +4,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import styles from "./styles";
 
 import app from "../../config/firebase";
-console.log(app);
 
 export default function RegistrationScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
